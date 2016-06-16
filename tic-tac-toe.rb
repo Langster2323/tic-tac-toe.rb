@@ -9,11 +9,15 @@ class Symbols
   class Player
   end
 
-  class Game
+  class Board
   end
 
-puts "Welcome to Tic-Tac-Toe"
+  class Game
+  end
+end
 
-print "<Print your name here: #{$name}>"
+puts "Welcome to Tic-Tac-Toe, play for complete domination!"
+
+print "<Player one type your name here: #{$name}, okay thanks!>"
 
 $name = gets.chomp
