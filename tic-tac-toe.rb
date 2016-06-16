@@ -5,7 +5,12 @@ class Symbols
     @😎 = 😎
     @🤓 = 🤓
   end
-end
+
+  class Player
+  end
+
+  class Game
+  end
 
 puts "Welcome to Tic-Tac-Toe"
 
