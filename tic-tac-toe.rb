@@ -1,20 +1,46 @@
 # - Create Players class
 
-class Players
+class Player
   attr_reader :name
-  attr_accessor :x, :o
+  attr_accessor :section
 
-  def initialize(name, x, o)
+  def initialize(name)
     @name = name
-    @x = x
-    @o = x
+  end
+  def player_movement(grid)
+    if player_one.input == '1'
+      puts "You chose cell 1"
+      grid.grid['1'] = "x"
+    end
+    if player_one.input == '2'
+      puts "You chose cell 2"
+      grid.grid['2'] = "x"
+    end
+    if player_one.input == '3'
+      puts "You chose cell 3"
+    end
+    if player_one.input == '4'
+      puts "You chose cell 4"
+    end
+    if player_one.input == '5'
+      puts "You chose cell 5"
+    end
+
   end
 
-  def input(x, o)
-    puts ""
+  def computer_move
   end
-  def player_one
+
+  def input
+    choices = ["X", "O"]
+    print "Choose a section. "
+    choices.each do |choice|
+      print "#{choice} "
+    end
+    @section = gets.chomp
   end
+
+
 end
 
 
@@ -23,6 +49,7 @@ end
 
 
 class Grid
+  attr_accessor :grid
   def make_grid
     @symbols = []
     @grid = {
@@ -52,18 +79,22 @@ end
 
 
 class Game
+  def player_choice
+  end
 end
 puts "Welcome to Tic-Tac-Toe, play for complete domination!"
 
 
-print "<Player one type your name here: #{@name}, okay thanks!>"
+print "<Player one type your name here:>"
 
-@name = gets.chomp
+name = gets.chomp
 print "To play you have to choose through sections 1-9,"
 
-@grid = Grid.new
-@grid.make_grid
-@grid.print_grid
+grid = Grid.new
+grid.make_grid
+grid.print_grid
 
-player_one = Player.new
+player_one = Player.new(name)
 player_one.input
+
+player_one.player_movement(grid)
