@@ -7,11 +7,11 @@ class Player
   def initialize(name)
     @name = name
   end
-  def player_movement(grid, character, spot)
+
+  def movement(grid, character, spot)
     if spot == '1'
       puts "You chose cell 1"
       grid.grid['1'] = character
-      puts ""
     end
     if spot == '2'
       puts "You chose cell 2"
@@ -48,7 +48,7 @@ class Player
 
   end
 
-  
+
 end
 
 
@@ -90,21 +90,32 @@ class Game
   def player_choice
   end
 end
+
 puts "Welcome to Tic-Tac-Toe, play for complete domination!"
 
+grid = Grid.new
 
 print "<Player one type your name here:>"
-
 name = gets.chomp
-print "To play you have to choose through sections 1-9,"
-spot = gets.chomp
-grid = Grid.new
-grid.print_grid
 
 player_one = Player.new(name)
-player_section = "X"
-computer_section = "O"
 computer_ai = Player.new("Computer")
 
-player_one.player_movement(grid, player_section, spot)
-computer_ai.computer_movement(grid, computer_section, spot)
+loop do
+  #Start of the turn
+  print "To play you have to choose through sections 1-9,"
+  spot = gets.chomp
+
+  grid.print_grid
+
+  player_section   = "X"
+  computer_section = "O"
+
+  player_one.movement(grid, player_section, spot)
+  computer_ai.movement(grid, computer_section, rand(1..9).to_s)
+  # Computer choice cannot stay random forever, will need to pick from available moes
+
+
+  grid.print_grid
+  #End of the turn
+end
