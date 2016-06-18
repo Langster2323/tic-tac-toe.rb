@@ -85,11 +85,41 @@ class Grid
 end
 
 
-
-class Game
-  def player_choice
+#methods
+def choice
+  movement.each do |character, spot|
+    if spot != @grid
+      not_@grid.push(character)
+    end
   end
 end
+
+def record
+  if player_section.movement == ['1'] && ['2'] && ['3']
+    puts "You win!"
+  end
+  if player_section.movement == ['1'] && ['5'] && ['9']
+    puts "You win!"
+  end
+  if player_section.movement == ['1'] && ['4'] && ['7']
+    puts "You win!"
+  end
+  if player_section.movement == ['4'] && ['5'] && ['6']
+    puts "You win!"
+  end
+  if player_section.movement == ['7'] && ['8'] && ['9']
+    puts "You win!"
+  end
+  if player_section.movement == ['7'] && ['5'] && ['3']
+    puts "You win!"
+  end
+  if player_section.movement == ['3'] && ['6'] && ['9']
+    puts "You win!"
+  end
+end
+
+#methods
+
 
 puts "Welcome to Tic-Tac-Toe, play for complete domination!"
 
@@ -104,6 +134,7 @@ computer_ai = Player.new("Computer")
 loop do
   #Start of the turn
   print "To play you have to choose through sections 1-9,"
+
   spot = gets.chomp
 
   grid.print_grid
