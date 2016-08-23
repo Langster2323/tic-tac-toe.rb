@@ -1,15 +1,3 @@
-# - Create Players class
-
-# class Player
-#   attr_reader :name, :gameover
-#   attr_accessor :section
-#
-#   def initialize(name, gameover)
-#     @name = name
-#     @gameover = gameover
-#   end
-
-
 @gamenumber = 0
 @player_one_score = 0
 @player_two_score = 0
@@ -22,7 +10,6 @@ end
 
 def pick(name, player)
   print "#{name}, you have "
-  # print player.to_i
   puts "Pick a number, 1-9"
   @answer = gets.chomp.to_i
 end
@@ -37,19 +24,6 @@ def move_p1
     puts "Action not available, please try again!"
     move_p1
   end
-  if @gameover == true
-    puts "Game Completed! Player 1(X), what have you?"
-    print "choose (#), or (n)ext game>"
-    choice = gets.chomp
-    if choice.upcase == "N" then
-      go
-    end
-    move_p1(choice.to_i)
-  else
-    puts "Player 1(X), what have you?"
-    print "choose (#)> "
-    choice = gets.chomp.to_i
-  end
 end
 
 
@@ -63,20 +37,6 @@ def move_p2
   else
     puts "Action not available, please try again!"
     move_p2
-  end
-  if @gameover == true
-    puts "Game Completed! Player 2(O), what have you?"
-    print "choose (#), or (n)ext game> "
-    choice = gets.chomp
-    if choice.upcase == "N"
-      go
-    end
-    move(choice.to_i)
-  else
-  puts "Player 2(O), what have you?"
-  print "choose (#)> "
-  choice = gets.chomp.to_i
-  move
   end
 end
 
