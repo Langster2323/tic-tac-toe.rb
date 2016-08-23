@@ -8,21 +8,12 @@
 #     @name = name
 #     @gameover = gameover
 #   end
-def start_board_over
-@board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-@player_one = []
-@player_two = []
-@player_one_win = FALSE
-@player_two_win = FALSE
+
+
+@gamenumber = 0
 @player_one_score = 0
 @player_two_score = 0
-@gamenumber = 0
-@answer = 0
-@gameover = FALSE
 @twoplayer = FALSE
-end
-
-
 def action
   move_p1
   move_p2
@@ -31,9 +22,9 @@ end
 
 def pick(name, player)
   print "#{name}, you have "
-  print player.to_i
+  # print player.to_i
   puts "Pick a number, 1-9"
-  @answer = gets.chomp
+  @answer = gets.chomp.to_i
 end
 
 def move_p1
@@ -46,20 +37,19 @@ def move_p1
     puts "Action not available, please try again!"
     move_p1
   end
-end
-if @gameover == true
-  puts "Game Completed! Player 1(X), what have you?"
-  print "choose (#), or (n)ext game>"
-  choice = gets.chomp
-  if choice.upcase == "N" then
-    go
-  end
-  move(choice.to_i)
-else
-  puts "Player 1(X), what have you?"
+  if @gameover == true
+    puts "Game Completed! Player 1(X), what have you?"
+    print "choose (#), or (n)ext game>"
+    choice = gets.chomp
+    if choice.upcase == "N" then
+      go
+    end
+    move_p1(choice.to_i)
+  else
+    puts "Player 1(X), what have you?"
     print "choose (#)> "
     choice = gets.chomp.to_i
-    move(choice)
+  end
 end
 
 
@@ -68,27 +58,28 @@ def move_p2
   name = "second player"
   pick(name, @player_two)
   if @board.include?(@answer)
-  @player_two.push(@answer)
-  @board.delete(@answer)
-else
-  puts "Action not available, please try again!"
-  move_p2
+    @player_two.push(@answer)
+    @board.delete(@answer)
+  else
+    puts "Action not available, please try again!"
+    move_p2
   end
-end
-if @gameover == true
+  if @gameover == true
     puts "Game Completed! Player 2(O), what have you?"
     print "choose (#), or (n)ext game> "
     choice = gets.chomp
-    if choice.upcase == "N" then
+    if choice.upcase == "N"
       go
     end
     move(choice.to_i)
   else
-    puts "Player 2(O), what have you?"
-    print "choose (#)> "
-    choice = gets.chomp.to_i
-    move(choice)
+  puts "Player 2(O), what have you?"
+  print "choose (#)> "
+  choice = gets.chomp.to_i
+  move
+  end
 end
+
 
 def c_turn
   def move
@@ -181,7 +172,6 @@ def play_game
     player_one_win_checker
     board_moves
     sleep 0.5
-
     if @twoplayer == true
       move_p2
     else
@@ -193,32 +183,6 @@ def play_game
   end
 end
 
-def reset_board
-  @sq1 = "1"
-  @sq2 = "2"
-  @sq3 = "3"
-  @sq4 = "4"
-  @sq5 = "5"
-  @sq6 = "6"
-  @sq7 = "7"
-  @sq8 = "8"
-  @sq9 = "9"
-  @header = "  BATTLE!  "
-  @p1win = FALSE
-  @p2win = FALSE
-  @gameover = FALSE
-  @board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  @player1 = []
-  @player2 = []
-  @gamenumber += 1
-  3.times do
-    sleep 0.5
-    board_moves
-    puts "Game ##{@gamenumber} go!"
-    sleep 0.5
-    board_moves
-  end
-end
 
 def reset_board
   @grid1 = "1"
@@ -236,7 +200,7 @@ def reset_board
   @gameover = FALSE
   @board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   @player_one = []
-  @player_one = []
+  @player_two = []
   @gamenumber += 1
   3.times do
     sleep 0.5
@@ -334,9 +298,7 @@ def boot_game
       puts "LETS GET THIS PARTY STARTED"
       3.times do
         sleep 0.5
-        # board_moves
         print "!"
-        # board_moves
       end
     elsif start.upcase == "N"
       puts "Right"
@@ -353,9 +315,8 @@ def boot_game
       to_start
     end
   end
-end
 
-def to_opponent
+  def to_opponent
     puts "PvP or PvC"
     print "(c)omputer or (p)layer?> "
     opponent = gets.chomp
@@ -372,11 +333,11 @@ def to_opponent
       sleep 1
       to_opponent
     end
-end
+  end
   to_start
   to_opponent
   @header = " BATTLE! "
-
+end
 
 def go
   reset_board
