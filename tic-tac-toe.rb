@@ -8,10 +8,16 @@
 #     @name = name
 #     @gameover = gameover
 #   end
+def start_board_over
+@board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 @player_one = []
 @player_two = []
-@board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+@player_one_win = FALSE
+@player_two_win = FALSE
 @answer = 0
+@gameover = FALSE
+end
+
 
 def action
   move_p1
@@ -29,15 +35,62 @@ end
 def move_p1
   name = "first player"
   pick(name, @player_one)
-  @player_one.push(@answer)
-  @board.delete(@answer)
+  if @board.include?(@answer)
+    @player_one.push(@answer)
+    @board.delete(@answer)
+  else
+    puts "Action not available, please try again!"
+    move_p1
+  end
 end
+if @gameover == true
+  puts "Game Completed! Player 1(X), what have you?"
+  print "choose (#), or (n)ext game>"
+  choice = gets.chomp
+  if choice.upcase == "N" then
+    go
+  end
+  move(choice.to_i)
+else
+  puts "Player 1(X), what have you?"
+    print "choose (#)> "
+    choice = gets.chomp.to_i
+    move(choice)
+end
+
+
 
 def move_p2
   name = "second player"
   pick(name, @player_two)
+  if @board.include?(@answer)
   @player_two.push(@answer)
   @board.delete(@answer)
+else
+  puts "Action not available, please try again!"
+  move_p2
+  end
+end
+if @gameover == true
+    puts "Game Completed! Player 2(O), what have you?"
+    print "choose (#), or (n)ext game> "
+    choice = gets.chomp
+    if choice.upcase == "N" then
+      go
+    end
+    move(choice.to_i)
+  else
+    puts "Player 2(O), what have you?"
+    print "choose (#)> "
+    choice = gets.chomp.to_i
+    move(choice)
+end
+
+def player1(a, b, c)
+  if @player_one.include?(a) && @player_one.include?(b) && @player_one.include?(c)
+    @player_one_win = true
+    @gameover = true
+  end
 end
 
 action
@@ -202,4 +255,4 @@ action
 #
 #   grid.print_grid
 #   #End of the turn
-# end
+#end
