@@ -90,6 +90,21 @@ if @gameover == true
     move(choice)
 end
 
+def c_turn
+  def move
+    @player_two.push(n)
+    @board.delete(n)
+  end
+  puts "Computer, what have you?"
+  3.times do
+    sleep 0.5
+    print "."
+  end
+  sleep 1
+  choice = @board.sample
+  move(choice)
+end
+
 def player1(a, b, c)
   if @player_one.include?(a) && @player_one.include?(b) && @player_one.include?(c)
     @player_one_win = true
@@ -144,7 +159,39 @@ def player_one_seq
   end
 end
 
+def player_two_seq
+  @player_two_score += 1
+  3.times do
+    @header = "                 "
+    board_moves
+    sleep 0.5
+    if @twoplayer == true
+      @header = "playertwo(O) wins!"
+    elsif @twoplayer == false
+      @header = "Computer wins!"
+    end
+    board_moves
+    sleep 0.5
+  end
+end
 
+def play_game
+  until @board == nil
+    move_p1
+    player_one_win_checker
+    board_moves
+    sleep 0.5
+
+    if @twoplayer == true
+      move_p2
+    else
+      c_turn
+    end
+    player_two_win_checker
+    board_moves
+    sleep 0.5
+  end
+end
 action
 
 
