@@ -192,6 +192,60 @@ def play_game
     sleep 0.5
   end
 end
+
+def reset_board
+  @sq1 = "1"
+  @sq2 = "2"
+  @sq3 = "3"
+  @sq4 = "4"
+  @sq5 = "5"
+  @sq6 = "6"
+  @sq7 = "7"
+  @sq8 = "8"
+  @sq9 = "9"
+  @header = "  BATTLE!  "
+  @p1win = FALSE
+  @p2win = FALSE
+  @gameover = FALSE
+  @board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  @player1 = []
+  @player2 = []
+  @gamenumber += 1
+  3.times do
+    sleep 0.5
+    board_moves
+    puts "Game ##{@gamenumber} go!"
+    sleep 0.5
+    board_moves
+  end
+end
+
+def reset_board
+  @grid1 = "1"
+  @grid2 = "2"
+  @grid3 = "3"
+  @grid4 = "4"
+  @grid5 = "5"
+  @grid6 = "6"
+  @grid7 = "7"
+  @grid8 = "8"
+  @grid9 = "9"
+  @header = "  BATTLE!  "
+  @player_one_win = FALSE
+  @player_two_win = FALSE
+  @gameover = FALSE
+  @board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  @player_one = []
+  @player_one = []
+  @gamenumber += 1
+  3.times do
+    sleep 0.5
+    board_moves
+    puts "Game ##{@gamenumber} go!"
+    sleep 0.5
+    board_moves
+  end
+end
 action
 
 
