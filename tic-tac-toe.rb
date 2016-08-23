@@ -14,8 +14,12 @@ def start_board_over
 @player_two = []
 @player_one_win = FALSE
 @player_two_win = FALSE
+@player_one_score = 0
+@player_two_score = 0
+@gamenumber = 0
 @answer = 0
 @gameover = FALSE
+@twoplayer = FALSE
 end
 
 
@@ -90,8 +94,56 @@ def player1(a, b, c)
   if @player_one.include?(a) && @player_one.include?(b) && @player_one.include?(c)
     @player_one_win = true
     @gameover = true
+    player_one_seq
   end
 end
+
+def player2(a, b, c)
+  if @player_two.include?(a) && @player_two.include?(b) && @player_two.include?(c)
+    @player_two_win = true
+    @gameover = true
+    player_two_seq
+  end
+end
+
+def player_one_win_checker
+  unless @player_one_win || @player_two_win
+    player1(1,2,3)
+    player1(4,5,6)
+    player1(7,8,9)
+    player1(1,4,7)
+    player1(2,5,8)
+    player1(3,6,9)
+    player1(1,5,9)
+    player1(3,5,7)
+  end
+end
+
+def player_two_win_checker
+  unless @player_one_win || @player_two_win
+    player2(1,2,3)
+    player2(4,5,6)
+    player2(7,8,9)
+    player2(1,4,7)
+    player2(2,5,8)
+    player2(3,6,9)
+    player2(1,5,9)
+    player2(3,5,7)
+  end
+end
+
+def player_one_seq
+  @player_one_score += 1
+  3.times do
+    @header = "                  "
+    board_moves
+    sleep 0.5
+    @header = "playerone(X) wins!"
+    board_moves
+    sleep 0.5
+  end
+end
+
 
 action
 
