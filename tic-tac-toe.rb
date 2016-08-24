@@ -73,29 +73,25 @@ def player2(a, b, c)
 end
 
 def player_one_win_checker
-  unless @player_one_win || @player_two_win
-    player1(1,2,3)
-    player1(4,5,6)
-    player1(7,8,9)
-    player1(1,4,7)
-    player1(2,5,8)
-    player1(3,6,9)
-    player1(1,5,9)
-    player1(3,5,7)
-  end
+  player1(1,2,3)
+  player1(4,5,6)
+  player1(7,8,9)
+  player1(1,4,7)
+  player1(2,5,8)
+  player1(3,6,9)
+  player1(1,5,9)
+  player1(3,5,7)
 end
 
 def player_two_win_checker
-  unless @player_one_win || @player_two_win
-    player2(1,2,3)
-    player2(4,5,6)
-    player2(7,8,9)
-    player2(1,4,7)
-    player2(2,5,8)
-    player2(3,6,9)
-    player2(1,5,9)
-    player2(3,5,7)
-  end
+  player2(1,2,3)
+  player2(4,5,6)
+  player2(7,8,9)
+  player2(1,4,7)
+  player2(2,5,8)
+  player2(3,6,9)
+  player2(1,5,9)
+  player2(3,5,7)
 end
 
 def player_one_seq
@@ -127,9 +123,10 @@ def player_two_seq
 end
 
 def play_game
-  until @board == nil
+  until @board == nil || @gameover == true
     move_p1
     player_one_win_checker
+    break if @player_one_win == true || @board.empty?
     board_moves
     sleep 0.5
     if @twoplayer == true
@@ -141,6 +138,10 @@ def play_game
     board_moves
     sleep 0.5
   end
+  # Do thing with winner
+  # -- check who won and tell them
+  # -- then exit 
+  exit
 end
 
 
@@ -155,9 +156,9 @@ def reset_board
   @grid8 = "8"
   @grid9 = "9"
   @header = "  BATTLE!  "
-  @player_one_win = FALSE
-  @player_two_win = FALSE
-  @gameover = FALSE
+  @player_one_win = false
+  @player_two_win = false
+  @gameover = false
   @board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   @player_one = []
   @player_two = []
