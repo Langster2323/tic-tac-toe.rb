@@ -42,7 +42,7 @@ end
 
 
 def c_turn
-  def move
+  def move(choice)
     @player_two.push(n)
     @board.delete(n)
   end
