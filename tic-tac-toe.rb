@@ -43,8 +43,8 @@ end
 
 def c_turn
   def move(choice)
-    @player_two.push(n)
-    @board.delete(n)
+    @player_two.push(choice)
+    @board.delete(choice)
   end
   puts "Computer, what have you?"
   3.times do
@@ -140,9 +140,6 @@ def play_game
     board_moves
     sleep 0.5
   end
-  # Do thing with winner
-  # -- check who won and tell them
-  # -- then exit
   exit
 end
 
