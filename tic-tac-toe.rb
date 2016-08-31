@@ -129,7 +129,7 @@ def play_game
     break if @player_one_win == true || @board.empty?
     board_moves
     sleep 0.5
-    if @board_moves == nil
+    if @board.empty?
       @header = "Tie game!"
   elsif @twoplayer == true
       move_p2
